@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Caesar's Cipher</title>
+	</head>
+	<body>
+		<h1>Caesar's Cipher with Sinatra</h1>
+		<form method = "POST">
+			<label>Normal</label><br>
+			<textarea rows = "4" cols = "50" name = "normal"><%= normal %></textarea><br>
+			<label>Encrypted</label><br>
+			<textarea rows = "4" cols = "50" name = "encrypted"><%= encrypted %></textarea><br>
+			<label>Key</label><br>
+			<input type = "number" id = "key_inputbox" name = "key" value = <%= key %> min = 1 max = 26 required /><br>
+			<input type = "submit" value = 'Encrypt/Decrypt' />
+		</form>
+		<a href = "..">Back</a>
+	</body>
+</html>
