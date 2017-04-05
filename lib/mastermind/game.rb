@@ -16,7 +16,7 @@ module Mastermind
 		def initialize(codesetter_class, codebreaker_class)
 			@codesetter = codesetter_class.new(self)
 			@codebreaker = codebreaker_class.new(self)
-			@code = []
+			@code = create_code
 			@guesses = {}.compare_by_identity 
 		end
 		
