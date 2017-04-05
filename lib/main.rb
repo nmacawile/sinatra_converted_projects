@@ -1,9 +1,11 @@
 require "sinatra"
 require "sinatra/reloader"
-require_relative "caesar_cipher"
+require_relative "caesar_cipher/caesar_cipher"
 
 set :root, File.join(File.dirname(__FILE__), '..')
 set :views, Proc.new { File.join(root, "views") }
+
+enable :sessions
 
 get '/' do
   send_file "views/index.html"
@@ -22,4 +24,12 @@ post '/caesarcipher' do
   else encrypted, normal = ""
   end
   erb :caesarcipher, :locals => { :encrypted => encrypted, :normal => normal, :key => key }
+end
+
+get '/mastermind' do
+
+end
+
+post '/mastermind' do
+
 end
