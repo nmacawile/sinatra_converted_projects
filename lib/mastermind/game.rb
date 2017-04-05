@@ -11,11 +11,9 @@ module Mastermind
 		
 		public
 		
-		attr_accessor :codesetter, :codebreaker, :guesses, :code_size
+		attr_accessor :guesses
 		
-		def initialize(codesetter_class, codebreaker_class)
-			@codesetter = codesetter_class.new(self)
-			@codebreaker = codebreaker_class.new(self)
+		def initialize
 			@code = create_code
 			@guesses = {}.compare_by_identity 
 		end
