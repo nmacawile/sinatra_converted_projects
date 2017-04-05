@@ -5,17 +5,11 @@ module Mastermind
 	class Game
 		include Mastermind::Feedback
 
-		private
-		
-		attr_accessor :code
-		
-		public
-		
-		attr_accessor :guesses
+		attr_accessor :code, :guesses
 		
 		def initialize
 			@code = create_code
-			@guesses = {}.compare_by_identity 
+			@guesses = []
 		end
 		
 		def	create_code
@@ -23,15 +17,19 @@ module Mastermind
 		end
 		
 		def crack_attempt(guess)
-			guesses[guess] = evaluate(code, guess)			
+			guesses.unshift [guess, evaluate(code, guess)]
 		end
 		
 		def code_cracked?
-			guesses.values.last == [4, 0]
+			!guesses.empty? && guesses.first[1] == [4, 0]
 		end
 		
 		def out_of_turns?
 			guesses.size >= 12
+		end
+
+		def over?
+			code_cracked? || out_of_turns?
 		end
 		
 	end

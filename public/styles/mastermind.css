@@ -1,0 +1,55 @@
+.peg, .pending, .selection {
+	border: 3px solid black;
+	width: 30px;
+	height: 30px;
+	border-radius: 30px;
+	display: inline-block;
+}
+
+.key {
+	border: 3px solid black;
+	width: 15px;
+	height: 15px;
+	border-radius: 15px;
+	display: inline-block;
+}
+
+.black {
+	background-color: black;
+}
+
+.grey {
+	background-color: grey;
+}
+
+.A {
+	background-color: red;
+}
+
+.B {
+	background-color: teal;
+}
+
+.C {
+	background-color: yellow;
+}
+
+.D {
+	background-color: green;
+}
+
+.E {
+	background-color: blue
+}
+
+.F {
+	background-color: indigo;
+}
+
+.G {
+	background-color: magenta;
+}
+
+.H {
+	background-color: brown;
+}

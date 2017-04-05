@@ -3,9 +3,86 @@
 <html>
 	<head>
 		<title>Mastermind</title>
+		<link href="styles/mastermind.css" rel="stylesheet" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="scripts/mastermind.js"></script>
 	</head>
 	<body>
 		<h1>Mastermind with Sinatra</h1>
+		<a href = "mastermind">New</a>
+		<br>
+
+		<% if @over %>	
+			<%= @message %>	
+			<div>			
+				<% @code.each do |peg| %>
+					<div class="peg <%= peg %>"></div>
+				<% end %>
+			</div>
+		<% else %>
+			<div>
+				<% 4.times do %>
+					<div class="black peg"></div>
+				<% end %>
+			</div>
+		<% end %>
+		<br>
+		<% rows = @guesses.nil? ? 12 : 12 - @guesses.size %>
+		<% rows.times do |row| %>
+			<div>
+				<% 4.times do %>
+					<div class="peg"></div>
+				<% end %>
+				<% 4.times do %>
+					<div class="key"></div>
+				<% end %>
+			</div>
+		<% end %>
+		<% unless @guesses.nil? %>
+			<% @guesses.each do |guess, match| %>
+				<div>
+					<% guess.each do |peg| %>
+						<div class="peg <%= peg %>"></div>
+					<% end %>
+					<% match[0].times do |n| %>
+						<div class="black key"></div>
+					<% end %>
+					<% match[1].times do |n| %>
+						<div class="grey key"></div>
+					<% end %>
+					<% (4 - (match[0] + match[1])).times do |n| %>
+						<div class="key"></div>
+					<% end %>
+				</div>
+			<% end %>
+		<% end %>
+		<br>
+
+		<div>			
+			<form method="POST"">
+				<div id="pending1" class="pending"></div>
+				<div id="pending2" class="pending"></div>
+				<div id="pending3" class="pending"></div>
+				<div id="pending4" class="pending"></div>
+				<input type="hidden" id="guess" name="guess" />
+				<input type="submit" id="crack" disabled="true" value="Guess" />				
+				<input type="button" id="clear" value="Clear" />
+			</form>
+		</div>
+		<br>
+
+		<div>
+			<div data-code="A" class="A selection"></div>
+			<div data-code="B" class="B selection"></div>
+			<div data-code="C" class="C selection"></div>
+			<div data-code="D" class="D selection"></div>
+		</div>
+		<div>
+			<div data-code="E" class="E selection"></div>
+			<div data-code="F" class="F selection"></div>
+			<div data-code="G" class="G selection"></div>
+			<div data-code="H" class="H selection"></div>
+		</div>
 		
 		<a href = "..">Back</a>
 	</body>

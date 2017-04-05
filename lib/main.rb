@@ -1,13 +1,15 @@
 require "sinatra"
 require "sinatra/reloader"
 require_relative "caesar_cipher/caesar_cipher"
+require_relative "mastermind/game"
 
 set :root, File.join(File.dirname(__FILE__), '..')
 set :views, Proc.new { File.join(root, "views") }
 
 enable :sessions
 
-get '/' do
+get '/' do  
+  session.clear
   send_file "views/index.html"
 end
 
@@ -26,10 +28,24 @@ post '/caesarcipher' do
   erb :caesarcipher, :locals => { :encrypted => encrypted, :normal => normal, :key => key }
 end
 
-get '/mastermind' do
-
+get '/mastermind' do  
+  session.clear
+  erb :mastermind
 end
 
 post '/mastermind' do
+  session[:game] ||= Mastermind::Game.new
+  redirect "mastermind" if session[:game].over?
+  @code = session[:game].code
+  @guesses = session[:game].guesses
+  @guess = params[:guess].upcase.split //  
+  session[:game].crack_attempt(@guess)
+  @over = session[:game].over?
+  @message = generate_message(session[:game])
+  erb :mastermind
+end
 
+def generate_message(game)
+  return "Congratulations! You have cracked the code!" if game.code_cracked?
+  return "You've run out of turns!" if game.out_of_turns?
 end
