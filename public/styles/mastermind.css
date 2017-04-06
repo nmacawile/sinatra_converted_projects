@@ -1,16 +1,16 @@
 .peg, .pending, .selection {
 	border: 3px solid black;
-	width: 30px;
-	height: 30px;
-	border-radius: 30px;
+	width: 20px;
+	height: 20px;
+	border-radius: 20px;
 	display: inline-block;
 }
 
 .key {
 	border: 3px solid black;
-	width: 15px;
-	height: 15px;
-	border-radius: 15px;
+	width: 10px;
+	height: 10px;
+	border-radius: 10px;
 	display: inline-block;
 }
 
