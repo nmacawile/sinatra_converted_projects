@@ -1,5 +1,5 @@
 require "sinatra"
-require "sinatra/reloader"
+require "sinatra/reloader" if development?
 require_relative "caesar_cipher/caesar_cipher"
 require_relative "mastermind/game"
 
