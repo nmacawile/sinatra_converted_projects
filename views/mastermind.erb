@@ -60,29 +60,24 @@
 
 		<div>			
 			<form method="POST">
-				<div id="pending1" class="pending"></div>
-				<div id="pending2" class="pending"></div>
-				<div id="pending3" class="pending"></div>
-				<div id="pending4" class="pending"></div>
+				<% (1..4).each do |n| %>
+				  <div id="pending<%= n %>" class="pending"></div>
+				<% end %>
 				<input type="hidden" id="guess" name="guess" />
 				<input type="submit" id="crack" disabled="true" value="Guess" />				
 				<input type="button" id="clear" value="Clear" />
 			</form>
 		</div>
 		<br>
-
-		<div>
-			<div data-code="A" class="A selection"></div>
-			<div data-code="B" class="B selection"></div>
-			<div data-code="C" class="C selection"></div>
-			<div data-code="D" class="D selection"></div>
-		</div>
-		<div>
-			<div data-code="E" class="E selection"></div>
-			<div data-code="F" class="F selection"></div>
-			<div data-code="G" class="G selection"></div>
-			<div data-code="H" class="H selection"></div>
-		</div>
+    
+    <h3>Selection</h3>
+    <% [%w(A B C D), %w(E F G H)].each do |code_group| %>
+			<div>
+			  <% code_group.each do |a| %>
+					<button data-code="<%= a %>" class="<%= a %> selection"></button>
+				<% end %>
+			</div>
+		<% end %>
 		
 		<a href = "..">Back</a>
 	</body>
